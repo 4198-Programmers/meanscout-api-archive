@@ -1,4 +1,4 @@
-# pip3 install "uvicorn[standard]" "fastapi[all]"
+# pip3 install "uvicorn[standard]" "fastapi[all]" mysql
 # uvicorn --host 0.0.0.0 main:app --reload
 
 import time
