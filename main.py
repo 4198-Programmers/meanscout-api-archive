@@ -5,7 +5,7 @@ import time
 import sql
 import mysql.connector
 
-authPassword = "CHANGETHIS"
+authPasswords = ["PUTPASSWORDSINHERE"]
 
 database = mysql.connector.connect(host="localhost", user="root", passwd="password", database="roboscout")
 
@@ -37,7 +37,8 @@ formdata = {
     "barnumber": "4",
     "climbattempt": True,
     "notes": "asd;lifjasef",
-    "driverating": "10/10"
+    "driverating": "10/10",
+    "password": "password"
 }
 
 @app.get("/")
@@ -46,12 +47,16 @@ def read_root():
 
 @app.post("/scouting")
 def yes(item: sql.FormData):
-    sql.AddForm(sqlcursor, database, item)
-    return "Added Form"
+    if item.password in authPasswords:
+        sql.AddForm(sqlcursor, database, item)
+        return "Added Form"
+    else:
+        return "Not Allowed"
+
 
 @app.delete("/scouting")
 def no(password: str):
-    if password == authPassword:
+    if password in authPasswords:
         sql.RemoveAllForms(sqlcursor, database)
         return "Removed All Forms"
     else:

@@ -24,6 +24,7 @@ class FormData(BaseModel):
     climbattempt: bool
     notes: str
     driverating: str
+    password: str
 
 def AddForm(cursor, database, formdata):
     print(formdata)
