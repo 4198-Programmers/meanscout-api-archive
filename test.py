@@ -3,7 +3,7 @@ import sql
 import json
 
 formdata = {
-    "team": "4198",
+    "team": 4198,
     "match": "3",
     "absent": False,
     "offtarmac": True,
