@@ -7,29 +7,52 @@ from pydantic import BaseModel
 # mycursor = database.cursor()
 
 class FormData(BaseModel):
-    team: str
+    team: int
     match: str
     absent: bool
-    offtarmac: bool
-    collectedballs: bool
-    autotop: int
-    autobottom: int
-    automissed: int
-    teletop: int
-    telebottom: int
-    telemissed: int
-    safearea: str
-    defence: str
-    barnumber: str
-    climbattempt: bool
-    notes: str
-    driverating: str
+    teamlefttarm: bool
+    teamcollecte: bool
+    toppre: int
+    bottompre: int
+    missedpre: int
+    top: int
+    bottom: int
+    missed: int
+    safeareausag: str
+    defenceplaye: str
+    barnumberrea: str
+    teamattempts: bool
+    anyrobotprob: str
+    extranotes: str
+    driveteamrat: str
     password: str
+
+formdata = {
+    "team": 4198,
+    "match": "82",
+    "absent": False,
+    "teamlefttarm": True,
+    "teamcollecte": False,
+    "toppre": 2,
+    "bottompre": 1,
+    "missedpre": 0,
+    "top": 3,
+    "bottom": 2,
+    "missed": 1,
+    "safeareausag": "A Little",
+    "defenceplaye": "A Little",
+    "barnumberrea": "4",
+    "teamattempts": True,
+    "anyrobotprob": "No Problems",
+    "extranotes": "This is an extra note.",
+    "driveteamrat": "swaggy :)",
+    "password": "password"
+}
 
 def AddForm(cursor, database, formdata):
     print(formdata)
-    sqlFormula = "INSERT INTO info VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    sqlFormTuple = (formdata.team, formdata.match, int(formdata.absent), int(formdata.offtarmac), int(formdata.collectedballs), int(formdata.autotop), int(formdata.autobottom), int(formdata.automissed), int(formdata.teletop), int(formdata.telebottom), int(formdata.telemissed), formdata.safearea, formdata.defence, formdata.barnumber, int(formdata.climbattempt), formdata.notes, formdata.driverating)
+    sqlFormula = "INSERT INTO info VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    sqlFormTuple = (formdata.team, formdata.match, int(formdata.absent), int(formdata.teamlefttarm), int(formdata.teamcollecte), int(formdata.toppre), int(formdata.bottompre), int(formdata.missedpre), int(formdata.top), int(formdata.bottom), int(formdata.missed), formdata.safeareausag, formdata.defenceplaye, formdata.barnumberrea, int(formdata.teamattempts), formdata.anyrobotprob, formdata.extranotes, formdata.driveteamrat)
     cursor.execute(sqlFormula, sqlFormTuple)
     database.commit()
     return
