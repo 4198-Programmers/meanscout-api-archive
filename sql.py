@@ -78,10 +78,6 @@ def GetAllForm(cursor, database):
             thing += f"{column}, "
         f.write(thing + "\n")
 
-
-
-
-
 # def checkIfUser(cursor, accountName, password):
 #     sqlFormula = "SELECT * FROM accounts"
 #     cursor.execute(sqlFormula)
