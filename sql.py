@@ -52,6 +52,8 @@ formdatayes = {
 def AddFormYes(formdata):
     csvstuff = open("asdf.csv", "r").read()
     addcsvstuff = f"{formdata.team}, {formdata.match}, {formdata.absent}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, {formdata.safeareausag}, {formdata.defenceplaye}, {formdata.barnumberrea}, {formdata.teamattempts}, {formdata.anyrobotprob}, {formdata.extranotes}, {formdata.driveteamrat}"
+    if "\n" in addcsvstuff:
+        addcsvstuff.replace("\n", "")
     csvstuff += f"\n{addcsvstuff}"
     with open("asdf.csv", "w") as f:
         f.write(csvstuff)
