@@ -2,27 +2,29 @@ import requests
 import sql
 import json
 
-formdata = {
+formdatayes = {
     "team": 4198,
-    "match": "3",
+    "match": "82",
     "absent": False,
-    "offtarmac": True,
-    "collectedballs": True,
-    "autotop": 1,
-    "autobottom": 2,
-    "automissed": 10,
-    "teletop": 10,
-    "telebottom": 10,
-    "telemissed": 69,
-    "safearea": "A Little",
-    "defence": "A Lot",
-    "barnumber": "4",
-    "climbattempt": True,
-    "notes": "asd;lifjasef",
-    "driverating": "10/10"
+    "teamlefttarm": True,
+    "teamcollecte": False,
+    "toppre": 2,
+    "bottompre": 1,
+    "missedpre": 0,
+    "top": 3,
+    "bottom": 2,
+    "missed": 1,
+    "safeareausag": "A Little",
+    "defenceplaye": "A Little",
+    "barnumberrea": "4",
+    "teamattempts": True,
+    "anyrobotprob": "No Problems",
+    "extranotes": "This is an extra note.",
+    "driveteamrat": "swaggy :)",
+    "password": "password"
 }
 
-yes = requests.delete("http://127.0.0.1:8000/scouting")
+yes = requests.post("http://127.0.0.1:8000/scouting", json=formdatayes)
 
 print(yes)
 print(yes.text)

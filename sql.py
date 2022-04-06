@@ -27,7 +27,7 @@ class FormData(BaseModel):
     driveteamrat: str
     password: str
 
-formdata = {
+formdatayes = {
     "team": 4198,
     "match": "82",
     "absent": False,
@@ -48,6 +48,17 @@ formdata = {
     "driveteamrat": "swaggy :)",
     "password": "password"
 }
+
+def AddFormYes(formdata):
+    csvstuff = open("asdf.csv", "r").read()
+    addcsvstuff = f"{formdata.team}, {formdata.match}, {formdata.absent}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, {formdata.safeareausag}, {formdata.defenceplaye}, {formdata.barnumberrea}, {formdata.teamattempts}, {formdata.anyrobotprob}, {formdata.extranotes}, {formdata.driveteamrat}"
+    csvstuff += f"\n{addcsvstuff}"
+    with open("asdf.csv", "w") as f:
+        f.write(csvstuff)
+
+def ResetCsv():
+    with open("asdf.csv", "w") as f:
+        f.write("team, match, absent, teamlefttarm, teamcollecte, toppre, bottompre, missedpre, top, bottom, missed, safeareausag, defenceplaye, barnumberrea, teamattempts, anyrobotprob, extranotes, driveteamrat")
 
 def AddForm(cursor, database, formdata):
     print(formdata)

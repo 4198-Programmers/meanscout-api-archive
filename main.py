@@ -5,11 +5,11 @@ import time
 import sql
 import mysql.connector
 
-authPasswords = ["PUTPASSWORDSINHERE"]
+authPasswords = ["password"]
 
-database = mysql.connector.connect(host="localhost", user="root", passwd="password", database="roboscout")
+#database = mysql.connector.connect(host="10.30.222.109", user="meanscout", passwd="password", database="roboscout2")
 
-sqlcursor = database.cursor()
+#sqlcursor = database.cursor()
 
 from typing import Optional
 
@@ -49,7 +49,8 @@ def read_root():
 @app.post("/scouting")
 def yes(item: sql.FormData):
     if item.password in authPasswords:
-        sql.AddForm(sqlcursor, database, item)
+        #sql.AddForm(sqlcursor, database, item)
+        sql.AddFormYes(item)
         return "Added Form"
     else:
         return "Not Allowed"
@@ -58,14 +59,15 @@ def yes(item: sql.FormData):
 @app.delete("/scouting")
 def no(password: str):
     if password in authPasswords:
-        sql.RemoveAllForms(sqlcursor, database)
+        #sql.RemoveAllForms(sqlcursor, database)
+        sql.ResetCsv()
         return "Removed All Forms"
     else:
         return "Not Allowed"
 
 @app.get("/scouting")
 def maybe():
-    sql.GetAllForm(sqlcursor, database)
+    #sql.GetAllForm(sqlcursor, database)
 
     memfile = io.StringIO(open("asdf.csv", "r").read())
     response = StreamingResponse(memfile, media_type="text/csv")
