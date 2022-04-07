@@ -29,7 +29,7 @@ class FormData(BaseModel):
 
 formdatayes = {
     "team": 4198,
-    "match": "82",
+    "match": 82,
     "absent": False,
     "teamlefttarm": True,
     "teamcollecte": False,
@@ -41,7 +41,7 @@ formdatayes = {
     "missed": 1,
     "safeareausag": "A Little",
     "defenceplaye": "A Little",
-    "barnumberrea": "4",
+    "barnumberrea": 4,
     "teamattempts": True,
     "anyrobotprob": "No Problems",
     "extranotes": "This is an extra note.",
@@ -51,16 +51,16 @@ formdatayes = {
 
 def AddFormYes(formdata):
     csvstuff = open("asdf.csv", "r").read()
-    addcsvstuff = f"{formdata.team}, {formdata.match}, {formdata.absent}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, {formdata.safeareausag}, {formdata.defenceplaye}, {formdata.barnumberrea}, {formdata.teamattempts}, {formdata.anyrobotprob}, {formdata.extranotes}, {formdata.driveteamrat}"
+    addcsvstuff = f'{formdata.team}, {formdata.match}, {formdata.absent}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
     if "\n" in addcsvstuff:
         addcsvstuff.replace("\n", "")
-    csvstuff += f"\n{addcsvstuff}"
+    csvstuff += f"{addcsvstuff}\n"
     with open("asdf.csv", "w") as f:
         f.write(csvstuff)
 
 def ResetCsv():
     with open("asdf.csv", "w") as f:
-        f.write("team, match, absent, teamlefttarm, teamcollecte, toppre, bottompre, missedpre, top, bottom, missed, safeareausag, defenceplaye, barnumberrea, teamattempts, anyrobotprob, extranotes, driveteamrat")
+        f.write("")
 
 def AddForm(cursor, database, formdata):
     print(formdata)

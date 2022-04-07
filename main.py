@@ -4,7 +4,7 @@
 import time
 import sql
 
-authPasswords = ["password"]
+authPasswords = ["Catz@10kLakes"]
 
 #database = mysql.connector.connect(host="10.30.222.109", user="meanscout", passwd="password", database="roboscout2")
 
@@ -16,12 +16,26 @@ from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 import io
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 
+origins = [
+    "*",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 formdata = {
     "team": 4198,
-    "match": "82",
+    "match": 82,
     "absent": False,
     "teamlefttarm": True,
     "teamcollecte": False,
@@ -33,7 +47,7 @@ formdata = {
     "missed": 1,
     "safeareausag": "A Little",
     "defenceplaye": "A Little",
-    "barnumberrea": "4",
+    "barnumberrea": 4,
     "teamattempts": True,
     "anyrobotprob": "No Problems",
     "extranotes": "This is an extra note.",
@@ -73,4 +87,3 @@ def maybe():
     response.headers["Content-Disposition"] = f"inline; filename=yes.csv"
 
     return response
-
