@@ -73,8 +73,8 @@ def yes(item: sql.FormData):
 def no(password: str):
     if password in authPasswords:
         #sql.RemoveAllForms(sqlcursor, database)
-        sql.ResetCsv()
-        return "Removed All Forms"
+        #sql.ResetCsv()
+        return "Remote Reset Dissalowed, Rejecting."
     else:
         return "Not Allowed"
 
@@ -82,7 +82,7 @@ def no(password: str):
 def maybe():
     #sql.GetAllForm(sqlcursor, database)
 
-    memfile = io.StringIO(open("asdf.csv", "r").read())
+    memfile = io.StringIO(open("collected_surveys.csv", "r").read())
     response = StreamingResponse(memfile, media_type="text/csv")
     response.headers["Content-Disposition"] = f"inline; filename=yes.csv"
 

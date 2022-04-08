@@ -50,16 +50,16 @@ formdatayes = {
 }
 
 def AddFormYes(formdata):
-    csvstuff = open("asdf.csv", "r").read()
+    csvstuff = open("collected_surveys.csv", "r").read()
     addcsvstuff = f'{formdata.team}, {formdata.match}, {formdata.absent}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
     if "\n" in addcsvstuff:
         addcsvstuff.replace("\n", "")
     csvstuff += f"{addcsvstuff}\n"
-    with open("asdf.csv", "w") as f:
+    with open("collected_surveys.csv", "w") as f:
         f.write(csvstuff)
 
 def ResetCsv():
-    with open("asdf.csv", "w") as f:
+    with open("collected_surveys.csv", "w") as f:
         f.write("")
 
 def AddForm(cursor, database, formdata):
@@ -81,10 +81,10 @@ def GetAllForm(cursor, database):
     cursor.execute(sqlFormula)
     result = cursor.fetchall()
     start = "team, match, absent, offtarmac, collectedballs, autotop, autobottom, automissed, teletop, telebottom, telemissed, safearea, defence, barnumber, climbattempt, notes, driverating"
-    with open("asdf.csv", "w") as f:
+    with open("collected_surveys.csv", "w") as f:
         f.write("")
         f.write(start + "\n")
-    f = open("asdf.csv", "a")
+    f = open("collected_surveys.csv", "a")
     for row in result:
         thing = ""
         for column in row:
