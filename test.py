@@ -24,7 +24,7 @@ formdatayes = {
     "password": "password"
 }
 
-yes = requests.post("http://127.0.0.1:8000/scouting", json=formdatayes)
+yes = requests.post("https://data.team4198.org:8000/scouting", json=formdatayes)
 
 print(yes)
 print(yes.text)
