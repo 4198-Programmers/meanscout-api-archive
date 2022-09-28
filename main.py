@@ -22,7 +22,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins = [
-    "*",
+    "https://scouting.team4198.org",
 ]
 
 app.add_middleware(
@@ -66,7 +66,7 @@ def yes(item: sql.FormData):
         sql.AddFormYes(item)
         return "Added Form"
     else:
-        return "Not Allowed"
+        return "Auth Failure: Not Allowed"
 
 
 @app.delete("/scouting")

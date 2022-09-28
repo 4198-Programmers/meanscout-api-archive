@@ -50,13 +50,14 @@ formdatayes = {
 }
 
 def AddFormYes(formdata):
-    csvstuff = open("collected_surveys.csv", "r").read()
-    addcsvstuff = f'{formdata.team}, {formdata.match}, {formdata.absent}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
-    if "\n" in addcsvstuff:
-        addcsvstuff.replace("\n", "")
-    csvstuff += f"{addcsvstuff}\n"
-    with open("collected_surveys.csv", "w") as f:
+    #csvstuff = open("collected_surveys.csv", "r").read()
+    csvstuff = f'{formdata.team}, {formdata.match}, {formdata.absent}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
+    if "\n" in csvstuff:
+        csvstuff.replace("\n", "")
+    csvstuff += "\n"
+    with open("collected_surveys.csv", "a") as f:
         f.write(csvstuff)
+        f.close()
 
 def ResetCsv():
     with open("collected_surveys.csv", "w") as f:
