@@ -67,7 +67,7 @@ def ResetCsv():
 def AddForm(cursor, database, formdata):
     print(formdata)
     sqlFormula = "INSERT INTO info VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    sqlFormTuple = (int(formdata.team), formdata.match, int(formdata.absent), int(formdata.name) int(formdata.teamlefttarm), int(formdata.teamcollecte), int(formdata.toppre), int(formdata.bottompre), int(formdata.missedpre), int(formdata.top), int(formdata.bottom), int(formdata.missed), formdata.safeareausag, formdata.defenceplaye, formdata.barnumberrea, int(formdata.teamattempts), formdata.anyrobotprob, formdata.extranotes, formdata.driveteamrat)
+    sqlFormTuple = (int(formdata.team), formdata.match, int(formdata.absent), formdata.name int(formdata.teamlefttarm), int(formdata.teamcollecte), int(formdata.toppre), int(formdata.bottompre), int(formdata.missedpre), int(formdata.top), int(formdata.bottom), int(formdata.missed), formdata.safeareausag, formdata.defenceplaye, formdata.barnumberrea, int(formdata.teamattempts), formdata.anyrobotprob, formdata.extranotes, formdata.driveteamrat)
     cursor.execute(sqlFormula, sqlFormTuple)
     database.commit()
     return
