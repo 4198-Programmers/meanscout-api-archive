@@ -10,6 +10,7 @@ class FormData(BaseModel):
     team: int
     match: str
     absent: bool
+    name: str
     teamlefttarm: bool
     teamcollecte: bool
     toppre: int
@@ -65,8 +66,8 @@ def ResetCsv():
 
 def AddForm(cursor, database, formdata):
     print(formdata)
-    sqlFormula = "INSERT INTO info VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    sqlFormTuple = (int(formdata.team), formdata.match, int(formdata.absent), int(formdata.teamlefttarm), int(formdata.teamcollecte), int(formdata.toppre), int(formdata.bottompre), int(formdata.missedpre), int(formdata.top), int(formdata.bottom), int(formdata.missed), formdata.safeareausag, formdata.defenceplaye, formdata.barnumberrea, int(formdata.teamattempts), formdata.anyrobotprob, formdata.extranotes, formdata.driveteamrat)
+    sqlFormula = "INSERT INTO info VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    sqlFormTuple = (int(formdata.team), formdata.match, int(formdata.absent), int(formdata.name) int(formdata.teamlefttarm), int(formdata.teamcollecte), int(formdata.toppre), int(formdata.bottompre), int(formdata.missedpre), int(formdata.top), int(formdata.bottom), int(formdata.missed), formdata.safeareausag, formdata.defenceplaye, formdata.barnumberrea, int(formdata.teamattempts), formdata.anyrobotprob, formdata.extranotes, formdata.driveteamrat)
     cursor.execute(sqlFormula, sqlFormTuple)
     database.commit()
     return
@@ -81,7 +82,7 @@ def GetAllForm(cursor, database):
     sqlFormula = "SELECT * FROM info"
     cursor.execute(sqlFormula)
     result = cursor.fetchall()
-    start = "team, match, absent, offtarmac, collectedballs, autotop, autobottom, automissed, teletop, telebottom, telemissed, safearea, defence, barnumber, climbattempt, notes, driverating"
+    start = "team, match, absent, name, offtarmac, collectedballs, autotop, autobottom, automissed, teletop, telebottom, telemissed, safearea, defence, barnumber, climbattempt, notes, driverating"
     with open("collected_surveys.csv", "w") as f:
         f.write("")
         f.write(start + "\n")
