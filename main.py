@@ -4,7 +4,9 @@
 import time
 import sql
 
-authPasswords = ["Catz@10kLakes"]
+import uvicorn
+
+authPasswords = ["Catz@10kLakes", "Catz@roseville"]
 
 #database = mysql.connector.connect(host="10.30.222.109", user="meanscout", passwd="password", database="roboscout2")
 
@@ -22,7 +24,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins = [
-    "https://scouting.team4198.org",
+        "*",
 ]
 
 app.add_middleware(
@@ -35,8 +37,9 @@ app.add_middleware(
 
 formdata = {
     "team": 4198,
-    "match": 82,
+    "matchnum": 82,
     "absent": False,
+    "name" : "joey",
     "teamlefttarm": True,
     "teamcollecte": False,
     "toppre": 2,
@@ -73,8 +76,8 @@ def yes(item: sql.FormData):
 def no(password: str):
     if password in authPasswords:
         #sql.RemoveAllForms(sqlcursor, database)
-        #sql.ResetCsv()
-        return "Remote Reset Dissalowed, Rejecting."
+        sql.ResetCsv()
+        return "Remote Reset Working"
     else:
         return "Not Allowed"
 
@@ -87,3 +90,10 @@ def maybe():
     response.headers["Content-Disposition"] = f"inline; filename=yes.csv"
 
     return response
+
+if __name__ == '__main__':
+    uvicorn.run("main:app",
+            host="0.0.0.0",
+            port=8000,
+            reload=True,
+    )

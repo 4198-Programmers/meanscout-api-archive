@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 class FormData(BaseModel):
     team: int
-    match: str
+    matchnum: str
     absent: bool
     name: str
     teamlefttarm: bool
@@ -30,8 +30,9 @@ class FormData(BaseModel):
 
 formdatayes = {
     "team": 4198,
-    "match": 82,
+    "matchnum": 82,
     "absent": False,
+    "name": "joey",
     "teamlefttarm": True,
     "teamcollecte": False,
     "toppre": 2,
@@ -52,7 +53,7 @@ formdatayes = {
 
 def AddFormYes(formdata):
     #csvstuff = open("collected_surveys.csv", "r").read()
-    csvstuff = f'{formdata.team}, {formdata.match}, {formdata.absent}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
+    csvstuff = f'{formdata.team}, {formdata.matchnum}, {formdata.absent}, {formdata.name}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
     if "\n" in csvstuff:
         csvstuff.replace("\n", "")
     csvstuff += "\n"
@@ -60,38 +61,38 @@ def AddFormYes(formdata):
         f.write(csvstuff)
         f.close()
 
-# def ResetCsv():
-#     with open("collected_surveys.csv", "w") as f:
-#         f.write("")
+def ResetCsv():
+    with open("collected_surveys.csv", "w") as f:
+        f.write("")
 
-# def AddForm(cursor, database, formdata):
-#     print(formdata)
-#     sqlFormula = "INSERT INTO info VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-#     sqlFormTuple = (int(formdata.team), formdata.match, int(formdata.absent), formdata.name int(formdata.teamlefttarm), int(formdata.teamcollecte), int(formdata.toppre), int(formdata.bottompre), int(formdata.missedpre), int(formdata.top), int(formdata.bottom), int(formdata.missed), formdata.safeareausag, formdata.defenceplaye, formdata.barnumberrea, int(formdata.teamattempts), formdata.anyrobotprob, formdata.extranotes, formdata.driveteamrat)
-#     cursor.execute(sqlFormula, sqlFormTuple)
-#     database.commit()
-#     return
+def AddForm(cursor, database, formdata):
+    print(formdata)
+    sqlFormula = "INSERT INTO info VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    sqlFormTuple = (int(formdata.team), formdata.match, int(formdata.absent), int(formdata.teamlefttarm), int(formdata.teamcollecte), int(formdata.toppre), int(formdata.bottompre), int(formdata.missedpre), int(formdata.top), int(formdata.bottom), int(formdata.missed), formdata.safeareausag, formdata.defenceplaye, formdata.barnumberrea, int(formdata.teamattempts), formdata.anyrobotprob, formdata.extranotes, formdata.driveteamrat)
+    cursor.execute(sqlFormula, sqlFormTuple)
+    database.commit()
+    return
 
-# def RemoveAllForms(cursor, database):
-#     sqlFormula = "DELETE FROM info"
-#     cursor.execute(sqlFormula)
-#     database.commit()
-#     return
+def RemoveAllForms(cursor, database):
+    sqlFormula = "DELETE FROM info"
+    cursor.execute(sqlFormula)
+    database.commit()
+    return
 
-# def GetAllForm(cursor, database):
-#     sqlFormula = "SELECT * FROM info"
-#     cursor.execute(sqlFormula)
-#     result = cursor.fetchall()
-#     start = "team, match, absent, name, offtarmac, collectedballs, autotop, autobottom, automissed, teletop, telebottom, telemissed, safearea, defence, barnumber, climbattempt, notes, driverating"
-#     with open("collected_surveys.csv", "w") as f:
-#         f.write("")
-#         f.write(start + "\n")
-#     f = open("collected_surveys.csv", "a")
-#     for row in result:
-#         thing = ""
-#         for column in row:
-#             thing += f"{column}, "
-#         f.write(thing + "\n")
+def GetAllForm(cursor, database):
+    sqlFormula = "SELECT * FROM info"
+    cursor.execute(sqlFormula)
+    result = cursor.fetchall()
+    start = "team, match, absent, offtarmac, collectedballs, autotop, autobottom, automissed, teletop, telebottom, telemissed, safearea, defence, barnumber, climbattempt, notes, driverating"
+    with open("collected_surveys.csv", "w") as f:
+        f.write("")
+        f.write(start + "\n")
+    f = open("collected_surveys.csv", "a")
+    for row in result:
+        thing = ""
+        for column in row:
+            thing += f"{column}, "
+        f.write(thing + "\n")
 
 # def checkIfUser(cursor, accountName, password):
 #     sqlFormula = "SELECT * FROM accounts"
