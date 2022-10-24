@@ -24,6 +24,7 @@ class FormData(BaseModel):
     defenceplaye: str
     barnumberrea: str
     teamattempts: bool
+    roughestimat: str
     anyrobotprob: str
     extranotes: str
     driveteamrat: str
@@ -46,6 +47,7 @@ formdatayes = {
     "defenceplaye": "A Little",
     "barnumberrea": 4,
     "teamattempts": True,
+    "roughestimat": "",
     "anyrobotprob": "No Problems",
     "extranotes": "This is an extra note.",
     "driveteamrat": "swaggy :)",
@@ -56,7 +58,7 @@ def AddFormYes(formdata):
     formdata.extranotes = formdata.extranotes.replace(',', "")
     formdata.driveteamrat = formdata.driveteamrat.replace(",", "")
     #csvstuff = open("collected_surveys.csv", "r").read()
-    csvstuff = f'{formdata.team}, {formdata.matchnum}, {formdata.absent}, {formdata.name}, {formdata.location}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
+    csvstuff = f'{formdata.team}, {formdata.matchnum}, {formdata.absent}, {formdata.name}, {formdata.location}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, {formdata.roughestimat}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
     if "\n" in csvstuff:
         csvstuff.replace("\n", "")
     csvstuff += "\n"
