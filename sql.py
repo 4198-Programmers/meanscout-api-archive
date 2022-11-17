@@ -57,7 +57,12 @@ formdatayes = {
 def AddFormYes(formdata):
     formdata.extranotes = formdata.extranotes.replace(',', "")
     formdata.driveteamrat = formdata.driveteamrat.replace(",", "")
+    formdata.roughestimat = formdata.roughestimat.replace(" seconds", "")
     #csvstuff = open("collected_surveys.csv", "r").read()
+    formdata.absent = str(formdata.absent).replace("True", "TRUE").replace("False", "FALSE")
+    formdata.teamlefttarm = str(formdata.teamlefttarm).replace("True", "TRUE").replace("False", "FALSE")
+    formdata.teamcollecte = str(formdata.teamcollecte).replace("True", "TRUE").replace("False", "FALSE")
+    formdata.teamattempts = str(formdata.teamattempts).replace("True", "TRUE").replace("False", "FALSE")
     csvstuff = f'{formdata.team}, {formdata.matchnum}, {formdata.absent}, {formdata.name}, {formdata.location}, {formdata.teamlefttarm}, {formdata.teamcollecte}, {formdata.toppre}, {formdata.bottompre}, {formdata.missedpre}, {formdata.top}, {formdata.bottom}, {formdata.missed}, "{formdata.safeareausag}", "{formdata.defenceplaye}", {formdata.barnumberrea}, {formdata.teamattempts}, {formdata.roughestimat}, "{formdata.anyrobotprob}", "{formdata.extranotes}", "{formdata.driveteamrat}"'
     if "\n" in csvstuff:
         csvstuff.replace("\n", "")
